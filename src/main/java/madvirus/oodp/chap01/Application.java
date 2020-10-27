@@ -5,6 +5,7 @@ public class Application {
     private Menu menu1 = new Menu("menu1");
     private Menu menu2 = new Menu("menu2");
     private Button button1 = new Button("button1");
+    private Button button2 = new Button("button1");
 
     private ScreenUI currentScreen = null;
 
@@ -27,6 +28,8 @@ public class Application {
                 return;
             if (eventSource.getId().equals("button1")) {
                 currentScreen.handleButton1Click();
+            } else if (eventSource.getId().equals("button2")) {
+                currentScreen.handleButton2Click();
             }
         }
     };
@@ -35,5 +38,6 @@ public class Application {
         menu1.setOnClickListener(menuListener);
         menu2.setOnClickListener(menuListener);
         button1.setOnClickListener(buttonListener);
+        button2.setOnClickListener(buttonListener);
     }
 }
