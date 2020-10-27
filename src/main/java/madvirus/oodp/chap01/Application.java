@@ -1,15 +1,12 @@
 package madvirus.oodp.chap01;
 
-import madvirus.oodp.chap01.Button;
-import madvirus.oodp.chap01.Component;
-import madvirus.oodp.chap01.Menu;
-import madvirus.oodp.chap01.OnClickListener;
-
 public class Application implements OnClickListener {
 
     private Menu menu1 = new Menu("menu1");
     private Menu menu2 = new Menu("menu2");
     private Button button1 = new Button("button1");
+    private Button button2 = new Button("button2");
+    private Button button3 = new Button("button3");
 
     private String currentMenu = null;
 
@@ -17,6 +14,8 @@ public class Application implements OnClickListener {
         menu1.setOnClickListener(this);
         menu2.setOnClickListener(this);
         button1.setOnClickListener(this);
+        button2.setOnClickListener(this);
+        button3.setOnClickListener(this);
     }
 
     @Override
@@ -32,6 +31,20 @@ public class Application implements OnClickListener {
                 processButton1WhenMenu1();
             else if (currentMenu.equals("menu2"))
                 processButton1WhenMenu2();
+        } else if (eventSource.getId().equals("button2")) {
+            if (currentMenu == null)
+                return;
+            if (currentMenu.equals("menu1"))
+                processButton2WhenMenu1();
+            else if (currentMenu.equals("menu2"))
+                processButton2WhenMenu2();
+        } else if (eventSource.getId().equals("button3")) {
+            if (currentMenu == null)
+                return;
+            if (currentMenu.equals("menu1"))
+                processButton3WhenMenu1();
+            else if (currentMenu.equals("menu2"))
+                processButton3WhenMenu2();
         }
     }
 
@@ -39,15 +52,31 @@ public class Application implements OnClickListener {
         currentMenu = "menu1";
         System.out.println("메뉴1 화면으로 전환");
     }
+
     private void changeUIToMenu2() {
         currentMenu = "menu2";
         System.out.println("메뉴2 화면으로 전환");
     }
+
     private void processButton1WhenMenu1() {
         System.out.println("메뉴1 화면의 버튼1 처리");
     }
     private void processButton1WhenMenu2() {
         System.out.println("메뉴2 화면의 버튼1 처리");
     }
+    private void processButton2WhenMenu1() {
+        System.out.println("메뉴1 화면의 버튼2 처리");
+    }
 
+    private void processButton2WhenMenu2() {
+        System.out.println("메뉴2 화면의 버튼2 처리");
+    }
+
+    private void processButton3WhenMenu1() {
+        System.out.println("메뉴1 화면의 버튼3 처리");
+    }
+
+    private void processButton3WhenMenu2() {
+        System.out.println("메뉴2 화면의 버튼3 처리");
+    }
 }
