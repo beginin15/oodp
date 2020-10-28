@@ -12,10 +12,9 @@ public class Paperboy {
     public void collectMoney() {
         for (Customer customer : customers) {
             int payment = 10000;
-            Wallet wallet = customer.getWallet();
-            if (wallet.getTotalMoney() >= payment) {
-                wallet.substractMoney(payment);
-            } else {
+            try {
+                int paidAmount = customer.pay(payment);
+            } catch (NotEnoughMoneyException e) {
                 // 다음에 요금 받으러 오는 처리
             }
         }
