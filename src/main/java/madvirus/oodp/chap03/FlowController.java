@@ -2,19 +2,8 @@ package madvirus.oodp.chap03;
 
 public class FlowController {
 
-    private boolean useFile;
-
-    public FlowController(boolean useFile) {
-        this.useFile = useFile;
-    }
-
     public void process() {
-        ByteSource source = null;
-        if (useFile) {
-            source = new FileDataReader();
-        } else {
-            source = new SocketDataReader();
-        }
+        ByteSource source = ByteSourceFactory.getInstance().create();
         byte[] data = source.read();
 
         Encryptor encryptor = new Encryptor();
