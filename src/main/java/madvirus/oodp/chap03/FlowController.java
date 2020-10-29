@@ -1,7 +1,5 @@
 package madvirus.oodp.chap03;
 
-import java.io.FileReader;
-
 public class FlowController {
 
     private boolean useFile;
@@ -11,14 +9,13 @@ public class FlowController {
     }
 
     public void process() {
-        byte[] data = null;
+        ByteSource source = null;
         if (useFile) {
-            FileDataReader fileReader = new FileDataReader();
-            data = fileReader.read();
+            source = new FileDataReader();
         } else {
-            SocketDataReader socketReader = new SocketDataReader();
-            data = socketReader.read();
+            source = new SocketDataReader();
         }
+        byte[] data = source.read();
 
         Encryptor encryptor = new Encryptor();
         byte[] encryptedData = encryptor.encrypt(data);
